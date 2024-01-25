@@ -1,0 +1,58 @@
+@import '../../app.component';
+
+.card-account {
+  height: 80vh;
+
+  & .card-header {
+    @include flex-start();
+  }
+
+  & .card-body .container {
+    height: 100%;
+
+    & .row {
+      height: 100%;
+
+      & .col-acc-left {
+        & form {
+          & .form-control {
+            width: 50vh;
+
+            &.password {
+              width: 45vh;
+            }
+          }
+
+          & .input-group-text {
+            cursor: pointer;
+          }
+        }
+
+        & button {
+          width: 20vh;
+        }
+      }
+
+      & .col-acc-right {
+        & img {
+          height: 200px;
+          width: 200px;
+          object-fit: cover;
+          border-radius: 20px;
+        }
+      }
+    }
+  }
+
+  & form,
+  label {
+    @include flex-start();
+    flex-direction: column;
+  }
+
+  & .card-footer {
+    @include flex-end();
+    gap: 20px;
+  }
+
+}

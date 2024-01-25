@@ -1,0 +1,187 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+@import '../app.component.scss';
+
+.floating-btn {
+  margin-bottom: 20px;
+  margin-right: 15px;
+}
+
+.col {
+  &-3 {
+    &.left {
+      position: relative;
+      height: 100vh;
+      left: -500px;
+      padding: 0;
+      z-index: 1;
+      background-color: rgb(199, 199, 204);
+      transition: all .5s ease;
+
+      & .sticky-left {
+        background-color: rgb(199, 199, 204);
+        padding: 20px;
+        height: auto;
+        position: static;
+
+        & #cancel {
+          cursor: pointer;
+          line-height: 45px;
+        }
+      }
+
+      & .notes {
+        padding: 0 20px 20px 20px;
+        overflow-y: scroll;
+        gap: 20px;
+
+        &::-webkit-scrollbar {
+          width: 0;
+        }
+
+        & .card {
+          transition: transform 0.5s;
+
+          &:hover {
+            cursor: pointer;
+            transform: scale(1.03);
+          }
+
+          &.card-note:not(:first-child) {
+            margin-top: 15px;
+          }
+
+          &.card-account {
+            height: 80vh;
+          }
+        }
+      }
+    }
+  }
+
+  &.right {
+    position: absolute;
+    padding: 0;
+    height: 100vh;
+
+    & .navbar {
+      & .collapse {
+
+        & .navbar-nav {
+          #check {
+            display: none;
+          }
+
+          label #btn {
+            position: absolute;
+            cursor: pointer;
+            font-size: 1.5rem;
+          }
+        }
+
+        & .navbar-nav li {
+          & a {
+            cursor: pointer;
+          }
+
+          & img {
+            width: 24px;
+            height: 24px;
+            object-fit: cover;
+            border: 1px solid black;
+            border-radius: 5px;
+          }
+
+          & .dropdown-toggle::after {
+            content: none;
+          }
+
+          & .btn-logout {
+            color: brown;
+          }
+        }
+      }
+    }
+
+    & .content {
+      padding: 20px;
+
+      & .card-account {
+        height: 80vh;
+
+        & .card-header {
+          @include flex-start();
+        }
+
+        & .card-body .container {
+          height: 100%;
+
+          & .row {
+            height: 100%;
+
+            & .col-acc-left {
+              & form {
+                & .form-control {
+                  width: 50vh;
+
+                  &.password {
+                    width: 45vh;
+                  }
+                }
+
+                & .input-group-text {
+                  cursor: pointer;
+                }
+              }
+
+              & button {
+                width: 20vh;
+              }
+            }
+
+            & .col-acc-right {
+              & img {
+                height: 200px;
+                width: 200px;
+                object-fit: cover;
+                border-radius: 20px;
+              }
+            }
+          }
+        }
+
+        & form,
+        label {
+          @include flex-start();
+          flex-direction: column;
+        }
+
+        & .card-footer {
+          @include flex-end();
+          gap: 20px;
+        }
+
+      }
+
+      & .card-welcome {
+        height: 80vh;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .col {
+    &-3 {
+      &.left {
+        height: 25vh;
+        width: 100%;
+
+        & .notes {
+          display: none;
+        }
+      }
+    }
+
+    &.right {}
+  }
+}

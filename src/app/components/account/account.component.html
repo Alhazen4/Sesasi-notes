@@ -1,0 +1,79 @@
+<div class="card card-account">
+
+  <div class="card-header">
+    <h3 class="card-title">Account Settings</h3>
+  </div>
+
+  <div class="card-body">
+    <div class="container container-fluid">
+      <div class="row">
+        <div class="col col-acc-left d-flex flex-column justify-content-between">
+          <form>
+            <div class="mb-3">
+              <label for="inputEmail" class="form-label">Name</label>
+              <input type="email" class="form-control" name="inputEmail" [(ngModel)]="loggedEmail">
+            </div>
+            <div class="mb-3">
+              <label for="inputUsername" class="form-label">Username</label>
+              <input type="text" class="form-control" name="inputUsername" [(ngModel)]="loggedUsername">
+            </div>
+            <div class="mb-3">
+              <label for="inputPass" class="form-label">Password</label>
+              <div class="input-group mb-3">
+                <input [type]="showPassStatus" class="form-control password" id="inputPass" name="inputPass"
+                  [(ngModel)]="loggedPassword">
+                <a class="input-group-text" id="basic-addon1" (click)="showPass()">
+                  <i [class]="eyeIcon"></i>
+                </a>
+              </div>
+              <div class="form-text">Don't share your password with anyone</div>
+            </div>
+          </form>
+          <!-- <button type="button" class="btn btn-danger" (click)="openConfrim()">Delete Account</button> -->
+        </div>
+        <div class="col col-acc-right">
+          <label for="img" class="form-label mb-3">Your Avatar</label>
+          <img [src]="profPicSrc" alt="...">
+          <div class="form-text mt-3">We take your avatar randomly based on your username</div>
+
+          <div class="mt-3">
+            <label for="img" class="form-label mb-3">Your ID</label>
+            <h3>{{ loggedId }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <button type="button" class="btn btn-success" (click)="saveAccount()">Save</button>
+  </div>
+</div>
+
+<!-- <ng-template #updatePassword let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Warning</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <h5>Please enter your old password to update your password!</h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="updatePass()">Encrypt & Update</button>
+  </div>
+</ng-template> -->
+
+<!-- <ng-template #confirmDelete let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Warning</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <h5>Please enter your password to delete your account!</h5>
+    <p>Your account will be deleted and you have to register a new one to use dNotes again!</p>
+    <input class="form-control" type="password" [(ngModel)]="encKey">
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="deleteAccount()">Delete Account</button>
+  </div>
+</ng-template> -->

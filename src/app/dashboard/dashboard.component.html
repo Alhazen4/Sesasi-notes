@@ -1,0 +1,106 @@
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-3 left d-flex flex-column sidebar">
+
+      <div class="sticky-left">
+        <div class="d-flex flex-row justify-content-between">
+          <h3>dNotes</h3>
+          <a (click)="toggleSidebar()">
+            <i class="bi bi-x-lg" id="cancel"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="notes">
+        <ng-container *ngFor="let note of notesData">
+          <div class="card card-note" (click)="openNote(note.id)">
+            <div class="card-body d-flex flex-column align-items-start">
+              <h5 class="card-title">{{ note.title }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                {{ note.user.username }}
+              </h6>
+              <h6 class="card-subtitle mb-2 text-muted"><i>{{ note.updatedAt | date }}</i></h6>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+    </div>
+
+    <div class="col right">
+      <div class="nav">
+        <nav class="navbar navbar-expand w-100">
+          <div class="container-fluid">
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+              
+              <ul class="navbar-nav" style="flex-direction: unset;">
+                <li class="nav-item" style="margin: 0;">
+                  <input type="checkbox" id="check" [(ngModel)]="checkStatus" (change)="checkChange()">
+                  <label for="check">
+                    <i class="bi bi-list ms-2" id="btn"></i>
+                  </label>
+                </li>
+
+                <li class="nav-item" style="margin: 24px 0 0 50px;">
+                  <!-- <p style="margin: 0 0 0 50px;">dNotes</p> -->
+                  <p>dNotes</p>
+                </li>
+              </ul>
+
+              <ul class=" navbar-nav">
+                <!-- Plus Icon Nav -->
+                <li class="nav-item" ngbDropdown>
+                  <a class="nav-link active bi bi-plus-lg" ngbDropdownToggle style="font-size: 1.5rem;"></a>
+                  <div ngbDropdownMenu class="dropdown-menu dropdown-menu-end">
+                    <button ngbDropdownItem (click)="newNote()">New Note</button>
+                  </div>
+                </li>
+
+                <!-- Profile Icon Nav -->
+                <li class="nav-item" ngbDropdown>
+                  <a ngbDropdownToggle style="font-size: 1.8rem; margin: 0 10px;">
+                    <img class='navProfPic' src="https://source.unsplash.com/OqtafYT5kTw" alt="..." />
+                  </a>
+                  <div ngbDropdownMenu class="dropdown-menu dropdown-menu-end">
+                    <button ngbDropdownItem (click)="accountViewActive()">Account Settings</button>
+                    <button class="btn-logout" ngbDropdownItem (click)="logOut()">Log
+                      Out</button>
+                  </div>
+                </li>
+
+              </ul>
+
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="content">
+
+        <ng-template [ngIf]="componentStatus.welcomeView">
+          <div class="card card-welcome">
+
+            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+              <h3 class="card-title">Welcome {{ loggedUsername }}</h3>
+              <h2>to dNotes</h2>
+              <p>version development</p>
+              <button type="button" class="btn btn-primary" (click)="newNote()">Make New Note</button>
+            </div>
+
+          </div>
+        </ng-template>
+
+        <ng-template [ngIf]="componentStatus.textView">
+          <app-note-view [noteId]="selectedNoteId" (getNotesByUserId)="getNotesByUserId()"
+            (backToWelcome)="welcomeViewActive()" />
+        </ng-template>
+
+        <ng-template [ngIf]="componentStatus.accountSet">
+          <app-account />
+        </ng-template>
+      </div>
+
+    </div>
+  </div>
+</div>

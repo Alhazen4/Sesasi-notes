@@ -1,0 +1,32 @@
+@import '../../app.component';
+
+
+.btn-toolbar {
+  @include flex-start();
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.text-area {
+  & textarea {
+    height: 65vh;
+
+    &.touch {
+      height: 30vh;
+    }
+  }
+
+
+  &-btn {
+    margin-top: 20px;
+    @include flex-end();
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  &-view {
+    & textarea {
+      height: 70vh;
+    }
+  }
+}

@@ -1,0 +1,71 @@
+<ng-template [ngIf]="componentStatus.textView">
+  <div class="text-area-view">
+    <div class="mb-1 d-flex flex-row justify-content-between">
+      <input placeholder="Note Title" class="form-control w-50" id="inputTitle" [(ngModel)]="noteDetail.title" readonly>
+    </div>
+    <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="noteDetail.body" readonly></textarea>
+    <div class="text-area-btn">
+      <div>
+        <button type="button" class="btn btn-danger" (click)="openConfirm()">Delete</button>
+      </div>
+      <div class="d-flex flex-row gap-3">
+        <button type="button" class="btn btn-warning" (click)="getNoteByIdForEdit()">Edit</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="componentStatus.textEditor">
+  <div class="text-area">
+    <div class="mb-1 d-flex flex-row justify-content-between">
+      <input placeholder="Note Title" class="form-control w-50" [(ngModel)]="noteDetailForEdit.title">
+    </div>
+    <textarea class="form-control" [(ngModel)]="noteDetailForEdit.body"></textarea>
+
+    <div class="text-area-btn">
+      <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+      <div class="d-flex flex-row justify-content-between gap-2">
+        <button type="button" class="btn btn-success" (click)="saveAction()">Save</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #saveModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Warning</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <h5>Are you sure want to save this note?</h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="saveNote()">Save</button>
+  </div>
+</ng-template>
+
+<ng-template #updateModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Warning</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <h5>Are you sure want to update this note?</h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="updateNote()">Update</button>
+  </div>
+</ng-template>
+
+<ng-template #confirmDelete let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Warning</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <p>Your note will be deleted and you wouldn't to see again!</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="deleteNote()">Delete Note</button>
+  </div>
+</ng-template>

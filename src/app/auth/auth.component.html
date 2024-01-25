@@ -1,0 +1,40 @@
+<div class="main">
+  <div class="card">
+
+    <ng-template [ngIf]="isRegistered">
+      <h2>Login</h2>
+      <form>
+        <span id="input-error" [style.display]="errorDisplay"></span>
+        <label for="inputUsername" class="form-label">Username</label>
+        <input type="text" class="form-control" name="inputUsername" [(ngModel)]="inputUsername">
+        <label for="inputPassword" class="form-label">Password</label>
+        <input type="password" class="form-control" name="inputPassword" [(ngModel)]="inputPassword">
+        <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
+      </form>
+      <div class="register-link">
+        <p>Don't have an account?</p>
+        <a (click)="switch()">Register Here!</a>
+      </div>
+    </ng-template>
+
+    <ng-template [ngIf]="!isRegistered">
+      <h2>Register</h2>
+      <form>
+        <span id="input-error" [style.display]="errorDisplay"></span>
+        <label for="inputNewEmail" class="form-label">New Name</label>
+        <input type="text" class="form-control" name="inputNewEmail" [(ngModel)]="inputNewName">
+        <label for="inputNewUsername" class="form-label">New Username</label>
+        <input type="text" class="form-control" name="inputNewUsername" [(ngModel)]="inputNewUsername">
+        <label for="inputNewPassword" class="form-label">New Password</label>
+        <input type="password" class="form-control" name="inputNewPassword" [(ngModel)]="inputNewPassword">
+        <button type="submit" class="btn btn-primary" (click)="register()">Register</button>
+      </form>
+      <div class="register-link">
+        <p>Have an account?</p>
+        <a (click)="switch()">Login Here!</a>
+      </div>
+    </ng-template>
+
+    <p>v.0.0</p>
+  </div>
+</div>
